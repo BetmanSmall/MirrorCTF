@@ -126,6 +126,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  playersMaterials: {fileID: -7082648737454205702}
+  playerMeshRenderer: {fileID: 1429699280111092485}
   moveLimit: 1
   moveLimitMin: {x: -9.5, y: 0, z: -9.5}
   moveLimitMax: {x: 9.5, y: 0, z: 9.5}

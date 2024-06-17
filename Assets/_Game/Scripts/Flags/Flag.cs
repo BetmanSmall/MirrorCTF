@@ -7,16 +7,13 @@ namespace _Game.Scripts.Flags {
         [SerializeField] private MeshRenderer flagRadiusMeshRenderer;
         [SyncVar]
         public int playerId = -1;
+        public CheckFlagPlayerDistance checkFlagPlayerDistance;
 
         public void Start() {
-            // Debug.Log("Flag::Start(); -- playerId:" + playerId);
             SetPlayerMaterials();
         }
 
         public void SetPlayerMaterials() {
-            // Debug.Log("Flag::SetPlayerMaterials(); -- playerId:" + playerId);
-            // Debug.Log("Flag::SetPlayerMaterials(); -- flagModelMeshRenderer:" + flagModelMeshRenderer);
-            // Debug.Log("Flag::SetPlayerMaterials(); -- flagRadiusMeshRenderer:" + flagRadiusMeshRenderer);
             flagModelMeshRenderer.material = playersMaterials.normalMaterials[playerId];
             flagRadiusMeshRenderer.material = playersMaterials.transparentMaterials[playerId];
         }

@@ -13,15 +13,13 @@ namespace _Game.Scripts.MiniGames {
         }
 
         [Command(requiresAuthority = false)]
-        private void CmdPlayerFailedMiniGame(uint netId) {
-            Debug.Log("MiniGameAnnouncer::CmdPlayerFailedMiniGame(); -- netId:" + netId);
-            RpcPlayerFailedMiniGame(netId);
+        private void CmdPlayerFailedMiniGame(uint senderNetId) {
+            RpcPlayerFailedMiniGame(senderNetId);
         }
 
         [ClientRpc(includeOwner = false)]
-        private void RpcPlayerFailedMiniGame(uint netId) {
-            Debug.Log("MiniGameAnnouncer::RpcPlayerFailedMiniGame(); -- netId:" + netId);
-            if (netId != NetworkClient.localPlayer.netId) {
+        private void RpcPlayerFailedMiniGame(uint senderNetId) {
+            if (senderNetId != NetworkClient.localPlayer.netId) {
                 panel.SetActive(true);
                 StartCoroutine(DisablePanelAfter(2f));
             }

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Mirror;
 
 /*
@@ -32,7 +31,6 @@ public class ActionsNetworkManager : NetworkManager
     public event Action OnClientConnectAction;
     public event Action OnClientDisconnectAction;
     public event Action OnClientNotReadyAction;
-    public event Action<ConnectionQuality, ConnectionQuality> OnConnectionQualityChangedAction;
     public event Action<TransportError, string> OnClientErrorAction;
 
     public event Action OnStartServerAction;
@@ -270,25 +268,6 @@ public class ActionsNetworkManager : NetworkManager
     public override void OnClientNotReady()
     {
         OnClientNotReadyAction?.Invoke();
-    }
-
-    /// <summary>
-    /// Called on client when connection quality changes. Override to show your own warnings or UI visuals.
-    /// </summary>
-    public override void CalculateConnectionQuality()
-    {
-        base.CalculateConnectionQuality();
-    }
-
-    /// <summary>
-    /// Called on client when connection quality changes. Override to show your own warnings or UI visuals.
-    /// </summary>
-    /// <param name="previous">previous connection quality</param>
-    /// <param name="current">new connection quality</param>
-    public override void OnConnectionQualityChanged(ConnectionQuality previous, ConnectionQuality current)
-    {
-        OnConnectionQualityChangedAction?.Invoke(previous, current);
-        base.OnConnectionQualityChanged(previous, current);
     }
 
     /// <summary>

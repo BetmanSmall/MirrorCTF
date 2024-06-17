@@ -161,6 +161,7 @@ MonoBehaviour:
   flagModelMeshRenderer: {fileID: 4989108151795151167}
   flagRadiusMeshRenderer: {fileID: 3142403011943680233}
   playerId: 0
+  checkFlagPlayerDistance: {fileID: 2436110237125295973}
 --- !u!114 &1999023408505732008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   syncInterval: 0
   radiusDetectPlayer: 1.3
   timeToCapture: 1.5
+  canCheck: 1
 --- !u!1 &6490515203274062788
 GameObject:
   m_ObjectHideFlags: 0

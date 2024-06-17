@@ -11,6 +11,7 @@ namespace _Game.Scripts.Flags {
         [SerializeField] private int spawnFlagsCount = 10;
         [SerializeField] private List<Flag> allFlags;
         private Dictionary<NetworkConnectionToClient, List<Flag>> _dictionaryPlayersFlags = new Dictionary<NetworkConnectionToClient, List<Flag>>();
+        public Dictionary<NetworkConnectionToClient, List<Flag>> DictionaryPlayersFlags => _dictionaryPlayersFlags;
 
         private void Start() {
             if (randomizeSpawns) {
@@ -23,23 +24,16 @@ namespace _Game.Scripts.Flags {
         }
 
         public void SpawnFlagsForPlayer(NetworkConnectionToClient networkConnectionToClient) {
-            Debug.Log("networkConnectionToClient:" + networkConnectionToClient);
             List<Flag> flagsForPlayer = new List<Flag>();
             if (spawnPoints.Count >= spawnFlagsCount) {
                 int indexAddLengh = spawnPoints.Count / spawnFlagsCount;
-                // Debug.Log("indexAddLengh:" + indexAddLengh);
                 for (int i = 0; i < spawnFlagsCount; i++) {
                     int indexSpawnPoint = i*indexAddLengh + Random.Range(1, indexAddLengh);
-                    // Debug.Log("indexSpawnPoint:" + indexSpawnPoint);
                     Transform spawnPointTransform = spawnPoints[indexSpawnPoint].transform;
                     GameObject flagGameObject = Instantiate(flagPrefab, spawnPointTransform.position, Quaternion.identity, flagsInstancesParent.transform);
-                    // Debug.Log("flagGameObject:" + flagGameObject);
                     Flag flag = flagGameObject.GetComponent<Flag>();
-                    // Debug.Log("flag:" + flag);
                     flag.playerId = networkConnectionToClient.connectionId;
-                    CheckFlagPlayerDistance checkFlagPlayerDistance = flagGameObject.GetComponent<CheckFlagPlayerDistance>();
-                    checkFlagPlayerDistance.NetworkConnectionToClient = networkConnectionToClient;
-                    // allFlags.Add(flag);
+                    flag.checkFlagPlayerDistance.NetworkConnectionToClient = networkConnectionToClient;
                     flagsForPlayer.Add(flag);
                     NetworkServer.Spawn(flagGameObject);
                 }

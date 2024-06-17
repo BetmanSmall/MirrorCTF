@@ -1,14 +1,5 @@
 {
   "dependencies": {
-    "com.oddworm.dbgdraw": {
-      "version": "https://github.com/pschraut/UnityDbgDraw.git#1.1.0",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.3"
-      },
-      "hash": "72b7bc64a987a3584cfbeebd7d4122498d1b4e6b"
-    },
     "com.unity.collab-proxy": {
       "version": "2.3.1",
       "depth": 0,
